@@ -1,0 +1,350 @@
+@import "../../../node_modules/spectre.css/src/spectre";
+@import "@/core/vars.scss";
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+html{
+  font-size: 18px;
+  height: 100%;
+}
+body {
+  height: 100%;
+  font-family: -apple-system, "SF UI Text", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Zen Hei", sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+}
+.fa-icon {
+  width: auto;
+  height: 1em; /* 或任意其它字体大小相对值 */
+  /* 要在 Safari 中正常工作，需要再引入如下两行代码 */
+  max-width: 100%;
+  max-height: 100%;
+}
+.proto-top{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $gray;
+  background-color: #fff;
+  padding:0 10px;
+  .proto-tools{
+    width: 100%;
+    .btn-group{
+      margin: 0 10px;
+    }
+  }
+}
+.proto-left{
+  position: fixed;
+  left: 0;
+  background-color: $white;
+  border-right: 1px solid $gray;
+}
+.proto-rect-tags{
+  border: none;
+  height: 100%;
+  border-top: 1px solid $gray;
+  .card-body{
+    height: calc(100% - 36px);
+    overflow: auto;
+  }
+  span {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;;
+    text-align: center;
+    margin: 2px;
+    cursor: pointer;
+    &:hover {
+      outline: 1px solid $blue;
+    }
+  }
+}
+.proto-rect-list{
+  border: none;
+  height: 100%;
+  border-top: 1px solid $gray;
+  .card-body{
+    height: calc(100% - 36px);
+    overflow: auto;
+  }
+}
+.proto-page-list{
+  border: none;
+  height: 100%;
+  .card-body{
+    height: calc(100% - 36px);
+    overflow: auto;
+  }
+}
+.proto-right{
+  position: fixed;
+  right: 0;
+  background-color: $white;
+  border-left: 1px solid $gray;
+  .proto-setting{
+    border: none;
+    height: 100%;
+    .card-body{
+      height: calc(100% - 36px);
+      overflow: auto;
+    }
+  }
+  .proto-setting-box-item{
+    padding: 4px;
+    display: flex;
+    align-items: center;
+
+    >input, >select{
+      width: 80px!important;
+    }
+
+    > span{
+      display: inline-block;
+      width: 80px;
+      flex-shrink: 0;
+    }
+  }
+}
+.proto-middle{
+  position: absolute;
+  background-color: $white;
+  overflow: scroll;
+  .proto-zoom{
+    transform-origin: 0 0;
+  }
+  .proto-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5000px;
+    height: 5000px;
+    transform-origin: 0 0;
+  }
+  .proto-rule{
+    position: fixed; 
+  }
+}
+.proto-rect{
+  position: absolute;
+}
+.proto-rect-tempGroup{
+  pointer-events: none;
+}
+.proto-rect-line{
+  // 扩大鼠标响应区域
+  &::before{
+    content: '';
+    position: absolute;
+    top: -4px; 
+    right: -4px;
+    bottom: -4px; 
+    left: -4px;
+  }
+}
+.proto-rect-lock-icon{
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  z-index: 2;
+}
+.proto-rect-hover{
+  outline: 1px solid $blue;
+  cursor: move;
+  &.proto-rect-lock{
+    outline: 1px solid $black;
+  }
+}
+.proto-rect-focus{
+  cursor: move;
+}
+.proto-rect-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+.proto-rect-inner-text{
+  outline: none;
+  word-break: break-all;
+}
+.proto-rect-handler{
+  position: absolute;
+  border: 1px solid $blue;
+  pointer-events: none;
+}
+.proto-rect-handler-lock{
+  border-color: $red;
+  .proto-rect-resizer{
+    border-color: $red;
+    background: $red;
+  }
+  .proto-rect-rotater{
+    border-color: $red;
+  }
+}
+.proto-rect-resizer {
+  position: absolute;
+  border: 1px solid $blue;
+  background: $white;
+  border-radius: 100%;
+  width: 9px;
+  height: 9px;
+  cursor: pointer;
+  pointer-events:fill;
+}
+.proto-rect-rotater{
+  position: absolute;
+  border: 1px solid $blue;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  pointer-events:fill;
+}
+.proto-guide{
+  position: absolute;
+  border-style: solid;
+  border-color: $red;
+  border-width: 0;
+  z-index: 10000;
+}
+.proto-guide-top{
+  left: 0;
+  width: 10000px;
+  height: 0;
+  border-top-width: 1px;
+}
+.proto-guide-left{
+  top: 0;
+  height: 10000px;
+  width: 0;
+  border-left-width: 1px;
+}
+.proto-height-half {
+  width: 100%;
+  height: 50%;
+}
+.proto-contextmenu { 
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.proto-menu-item-disalbed{
+  color: $gray;
+  a{
+    cursor: default!important;
+    &:hover{
+      color: $gray!important;
+      background:$white!important;
+    }
+  }
+}
+.proto-tree {
+  position: relative;
+  .proto-tree-scroll-handler {
+    position: absolute;
+    left: 0;
+    // background: $secondary;
+    width: 100%;
+    height: 20px;
+    z-index: 3;
+  }
+  .proto-tree-scroll-handler-top {
+    top: 30px;
+  }
+  .proto-tree-scroll-handler-bottom {
+    bottom: 0;
+  }
+  .proto-tree-item {
+    position: relative;
+    padding: 0 4px;
+    margin: 4px 0;
+  }
+  .proto-tree-item-inner {
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    .fa-icon {
+      margin-right: 4px;
+    }
+  }
+  .proto-tree-item-emit-hover {
+    &:hover{
+      color: $blue;
+      background: $secondary;
+    }
+  }
+  .proto-tree-item-drag-handler {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 8px;
+  }
+  .proto-tree-item-drag {
+    &:hover{
+      z-index: 2;
+    }
+    .proto-tree-item-inner {
+      &:hover{
+        outline: 1px solid $blue;
+        cursor: default;
+      }
+    }
+    .proto-tree-item-drag-handler {
+      &:hover{
+        border-top-color: $red;
+        border-bottom-color: $red;
+      }
+    }
+  }
+  .proto-tree-item-hover{
+    color: $blue;
+    background: $secondary;
+  }
+  .proto-tree-item-drag-handler-top{
+    top: 0;
+    border-top: 1px solid transparent;
+  }
+  .proto-tree-item-drag-handler-bottom{
+    bottom: 0;
+    border-bottom: 1px solid transparent;
+  }
+}
+.proto-circle {
+  position: absolute;
+  border: 1px solid $red;
+  pointer-events: none;
+}
+.btn-sm {
+  .fa-icon {
+    position: relative;
+    top: 1px;
+    margin-right: 2px;
+  }
+}
+.tools-btn {
+  color: $blue;
+  margin: 0 4px;
+  font-size: 14px;
+  cursor: pointer;
+  .fa-icon {
+    position: relative;
+    top: 1px;
+    margin-right: 2px;
+  }
+}
+.tools-btn-disalbed {
+  color: $gray;
+  cursor: not-allowed;
+}

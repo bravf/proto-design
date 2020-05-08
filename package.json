@@ -1,0 +1,33 @@
+{
+  "name": "proto-design",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "localforage": "^1.7.3",
+    "spectre.css": "^0.5.8",
+    "uuidv4": "^6.0.6",
+    "vue": "^2.6.11",
+    "vue-awesome": "^4.0.2",
+    "vue-color": "^2.7.1",
+    "vue-deferred": "^1.0.2",
+    "vue-jsx": "^0.2.9",
+    "vue-router": "^3.1.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
